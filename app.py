@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-import pyodbc
+import pymssql
 import pandas as pd
 import os
 from dotenv import load_dotenv
@@ -9,15 +9,14 @@ load_dotenv()
 app = Flask(__name__)
 
 # Conexão com Azure SQL via variáveis de ambiente
-conn_str = (
-    "Driver={ODBC Driver 17 for SQL Server};"
-    f"Server={os.getenv('SQL_SERVER')};"
-    f"Database={os.getenv('SQL_DATABASE')};"
-    f"Uid={os.getenv('SQL_USER')};"
-    f"Pwd={os.getenv('SQL_PASSWORD')};"
-    "Encrypt=yes;"
-    "TrustServerCertificate=no;"
-    "Connection Timeout=30;"
+
+
+conn = pymssql.connect(
+    server=os.getenv("SQL_SERVER"),
+    user=os.getenv("SQL_USER"),
+    password=os.getenv("SQL_PASSWORD"),
+    database=os.getenv("SQL_DATABASE"),
+    port=1433
 )
 
 @app.route("/")
