@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Estoque Atual - JC Decor</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background-color: #f4f4f4; }
+        table { border-collapse: collapse; width: 100%; background-color: white; }
+        th, td { padding: 10px 14px; border: 1px solid #ddd; }
+        th { background-color: #00264d; color: white; text-align: left; }
+        h2 { color: #00264d; }
+    </style>
+</head>
+<body>
+    <h2>Estoque Atual (View: PRODUTOS_ESTOQUE_CORTTEX)</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Estoque Atual</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row['Produto'] }}</td>
+                <td>{{ row['estoque_atual'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
